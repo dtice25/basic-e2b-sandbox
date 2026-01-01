@@ -15,7 +15,7 @@ app.post('/api/sandbox', async (_req, res) => {
     const sandbox = await compute.sandbox.create();
 
     // Create basic Vite React app
-    await sandbox.runCommand('npm', ['create', 'vite@5', 'app', '--', '--template', 'react']);
+    await sandbox.runCommand('npm create vite@5 app -- --template react');
 
     // Custom vite.config.js to allow access to sandbox at port 5173
     const viteConfig = `import { defineConfig } from 'vite'
@@ -35,13 +35,17 @@ export default defineConfig({
     await sandbox.filesystem.writeFile('app/vite.config.js', viteConfig);
 
     // Install dependencies
-    const installResult = await sandbox.runCommand('bash', ['-c', 'cd app && npm install']);
+    const installResult = await sandbox.runCommand('npm install', {
+      cwd: 'app'
+    });
     console.log('npm install exit code:', installResult.exitCode);
     console.log('npm install stdout:', installResult.stdout);
     if (installResult.stderr) console.log('npm install stderr:', installResult.stderr);
 
     // Start dev server
-    sandbox.runCommand('bash', ['-c', 'cd app && npm run dev > vite.log 2>&1'])
+    sandbox.runCommand('npm run dev > vite.log 2>&1', {
+      cwd: 'app',
+    })
     console.log('Dev server started in background');
 
     // Get preview URL
