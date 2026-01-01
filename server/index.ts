@@ -4,7 +4,7 @@ import cors from 'cors';
 import { compute } from 'computesdk';
 
 const app = express();
-const PORT = 3001;
+const PORT = 8081;
 
 app.use(cors());
 app.use(express.json());
