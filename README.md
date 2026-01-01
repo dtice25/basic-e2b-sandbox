@@ -1,6 +1,12 @@
-# React + TypeScript + Vite
+# ComputeSDK -> E2B Sandbox
+## React + TypeScript + Vite
 
 This is a basic React + Typescript + Vite template that uses [ComputeSDK](https://www.computesdk.com/) to create a sandbox in E2B and run a basic Vite app inside of the sandbox.
+
+1. Add COMPUTESDK_API_KEY & E2B_API_KEY to environment variables.
+2. Start locally with 'npm run dev'
+3. Click "Create E2B Sandbox" at localhost:5173
+4. ComputeSDK auto-detects environment variables to create sandbox in any sandbox provider
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
