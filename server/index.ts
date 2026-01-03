@@ -45,6 +45,7 @@ export default defineConfig({
     // Start dev server
     sandbox.runCommand('npm run dev > vite.log 2>&1', {
       cwd: 'app',
+      background: true,
     })
     console.log('Dev server started in background');
 
